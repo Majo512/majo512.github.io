@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majo - Portfolio Profesional</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Fuentes Art Decó -->
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">Majo</a>
+        <ul class="menu">
+            <li><a href="index.html" class="activo">Inicio</a></li>
+            <li><a href="sobre-mi.html">Sobre Mí</a></li>
+            <li><a href="portafolio.html">Portafolio</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main class="contenedor">
+        <div class="inicio-dos-columnas">
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="columna-izquierda">
+                <h1>
+                    ¡Hola! Soy Majo
+                    <span>freelance social media e-commerce</span>
+                </h1>
+                <p>
+                    Transformo ideas en experiencias digitales memorables. 
+                    Especialista en diseño web y creación de contenido que conecta con las personas.
+                </p>
+                <div class="botones">
+                    <a href="portafolio.html" class="btn btn-primario">Ver mi trabajo</a>
+                    <a href="contacto.html" class="btn btn-secundario">Hablemos</a>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA (FOTO) -->
+            <div class="columna-derecha">
+                <div class="carrusel">
+        <div class="carrusel-contenedor" id="carrusel-contenedor">
+            <div class="carrusel-item">
+                <img src="images/foto1.jpg" alt="Majo - Foto profesional">
+            </div>
+            <div class="carrusel-item">
+                <img src="images/foto2.png" alt="Majo - Trabajando">
+            </div>
+            <div class="carrusel-item">
+                <img src="images/foto3.jpg" alt="Majo - Creativa">
+            </div>
+        </div>
+        
+        <button class="carrusel-boton boton-izquierda" id="boton-izquierda">❮</button>
+        <button class="carrusel-boton boton-derecha" id="boton-derecha">❯</button>
+        
+        <div class="carrusel-indicadores" id="indicadores">
+            <div class="indicador activo"></div>
+            <div class="indicador"></div>
+            <div class="indicador"></div>
+        </div>
+    </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/maria-jose-veloso/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/tu-perfil" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://instagram.com/tu-perfil" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:majitovelosoojeda@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>© 2026 Majo. Todos los derechos reservados.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Diseñado con <i class="fas fa-heart" style="color: #f65b5b;"></i></p>
+    </footer>
+    <script>
+    // Carrusel automático
+    const carruselContenedor = document.getElementById('carrusel-contenedor');
+    const botonIzquierda = document.getElementById('boton-izquierda');
+    const botonDerecha = document.getElementById('boton-derecha');
+    const indicadores = document.querySelectorAll('.indicador');
+    
+    let indiceActual = 0;
+    const totalItems = document.querySelectorAll('.carrusel-item').length;
+    
+    function actualizarCarrusel() {
+        const desplazamiento = -indiceActual * 100;
+        carruselContenedor.style.transform = `translateX(${desplazamiento}%)`;
+        
+        // Actualizar indicadores
+        indicadores.forEach((indicador, i) => {
+            if (i === indiceActual) {
+                indicador.classList.add('activo');
+            } else {
+                indicador.classList.remove('activo');
+            }
+        });
+    }
+    
+    function siguienteImagen() {
+        indiceActual = (indiceActual + 1) % totalItems;
+        actualizarCarrusel();
+    }
+    
+    function imagenAnterior() {
+        indiceActual = (indiceActual - 1 + totalItems) % totalItems;
+        actualizarCarrusel();
+    }
+    
+    // Eventos de botones
+    botonDerecha.addEventListener('click', siguienteImagen);
+    botonIzquierda.addEventListener('click', imagenAnterior);
+    
+    // Eventos de indicadores
+    indicadores.forEach((indicador, i) => {
+        indicador.addEventListener('click', () => {
+            indiceActual = i;
+            actualizarCarrusel();
+        });
+    });
+    
+    // Carrusel automático cada 5 segundos
+    let intervalo = setInterval(siguienteImagen, 5000);
+    
+    // Pausar al pasar el mouse
+    const carrusel = document.querySelector('.carrusel');
+    carrusel.addEventListener('mouseenter', () => {
+        clearInterval(intervalo);
+    });
+    
+    carrusel.addEventListener('mouseleave', () => {
+        intervalo = setInterval(siguienteImagen, 5000);
+    });
+</script>
+
+</body>
+</html>
