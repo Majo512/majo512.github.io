@@ -582,26 +582,74 @@ button:focus-visible {
     outline: 3px solid #C5A059;
     outline-offset: 3px;
 }
-
 /* === RESPONSIVE (Celulares y Tablets) === */
 @media (max-width: 768px) {
-    .inicio-dos-columnas, .sobre-mi-grid {
+    /* 1. Arreglar la página de inicio */
+    .inicio-dos-columnas {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+        padding-top: 2rem;
+    }
+    
+    .columna-izquierda h1 {
+        font-size: 2.8rem; /* Letra un poco más chica en celular */
+    }
+
+    /* Acá forzamos a que el subtítulo baje y no se pegue al título */
+    .columna-izquierda h1 span {
+        display: block !important; 
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    .botones {
+        justify-content: center;
+        flex-wrap: wrap; /* Si no entran los botones, bajan */
+    }
+    
+    /* 2. Arreglar el carrusel de fotos */
+    .carrusel {
+        max-width: 100%; /* Que ocupe todo el ancho de la pantalla */
+        margin-top: 1rem;
+    }
+    
+    .carrusel-item img {
+        height: 350px; /* Altura ideal para celular */
+    }
+
+    .carrusel-boton {
+        padding: 0.6rem 0.8rem; /* Botones un poco más chicos */
+        font-size: 1rem;
+    }
+    
+    /* 3. Arreglar la sección Sobre Mí y el resto */
+    .sobre-mi-grid {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 2rem;
     }
-    
-    .columna-izquierda h1 span { display: inline; }
-    
-    .botones { justify-content: center; }
-    
-    .carrusel-item img { height: 300px; }
-    
-    section { padding: 2rem; }
-    
-    .lista-idiomas { gap: 1rem; justify-content: center; }
 
-    .tarjeta-datos { text-align: left; }
+    .lista-valores li {
+        text-align: left; /* Los valores se leen mejor a la izquierda */
+    }
+
+    .tarjeta-datos {
+        text-align: left;
+    }
+    
+    section {
+        padding: 1.5rem; /* Menos espacio blanco en los costados */
+    }
+
+    section h2 {
+        font-size: 2rem;
+    }
+
+    .lista-idiomas {
+        gap: 1rem;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 600px) {
@@ -615,8 +663,4 @@ button:focus-visible {
         flex-wrap: wrap;
         justify-content: center;
     }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .carrusel-contenedor { transition: none; }
 }
