@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Majo - Portfolio</title>
+    <title>Majo | Desarrollo Web & Contenido Digital — Freelance y Remoto</title>
+    <meta name="description" content="Portfolio de María José Veloso: desarrollo web, edición de video y gestión de redes sociales. Disponible para proyectos freelance y trabajo remoto.">
+    <meta property="og:title" content="Majo — Desarrollo Web & Contenido Digital">
+    <meta property="og:description" content="Creo sitios web, edito videos y gestiono redes sociales. Freelance y remoto.">
+    <meta property="og:image" content="images/foto1.jpg">
+    <meta property="og:url" content="https://majo512.github.io">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -17,6 +24,7 @@
             <li><a href="sobre-mi.html">Sobre Mí</a></li>
             <li><a href="portafolio.html">Portafolio</a></li>
             <li><a href="contacto.html">Contacto</a></li>
+          
         </ul>
     </nav>
 
@@ -24,54 +32,56 @@
         <div class="inicio-dos-columnas">
             <!-- COLUMNA IZQUIERDA -->
             <div class="columna-izquierda">
+                
                 <h1>
                     ¡Hola! Soy Majo
-                    <span>Full Stack Developer <br> Social Media E-commerce</span>
+                    <span>Desarrollo Web <br> Contenido Digital</span>
                 </h1>
                 <p>
-                    Transformo ideas en experiencias digitales memorables. 
-                    Especialista en diseño web y creación de contenido que conecta con las personas.
+                    Transformo ideas en experiencias digitales memorables.
+                    Creo sitios web, edito videos y gestiono redes sociales para marcas y proyectos que quieren conectar con las personas.
                 </p>
+                <p class="badge-disponible">● Disponible para proyectos freelance y trabajo remoto</p>
                 <div class="botones">
                     <a href="portafolio.html" class="btn btn-primario">Ver mi trabajo</a>
                     <a href="contacto.html" class="btn btn-secundario">Hablemos</a>
+                    <a href="cv-maria-jose-veloso.pdf" class="btn btn-secundario" target="_blank" rel="noopener">Ver mi CV</a>
                 </div>
             </div>
 
             <!-- COLUMNA DERECHA - CARRUSEL -->
             <div class="columna-derecha">
-                <div class="carrusel">
+                <div class="carrusel" role="region" aria-label="Galería de fotos de Majo">
                     <div class="carrusel-contenedor" id="carrusel-contenedor">
                         <div class="carrusel-item">
-                            <img src="images/foto1.jpg" alt="Majo - Foto profesional">
+                            <img src="images/foto1.jpg" alt="María José Veloso, desarrollo web y contenido digital">
                         </div>
                         <div class="carrusel-item">
-                            <img src="images/foto2.png" alt="Majo - Trabajando">
+                            <img src="images/foto2.png" alt="Majo trabajando en un proyecto digital" loading="lazy">
                         </div>
                         <div class="carrusel-item">
-                            <img src="images/foto3.jpg" alt="Majo - Creativa">
+                            <img src="images/foto3.jpg" alt="Majo creando contenido para redes sociales" loading="lazy">
                         </div>
                     </div>
-                    
-                    <button class="carrusel-boton boton-izquierda" id="boton-izquierda">❮</button>
-                    <button class="carrusel-boton boton-derecha" id="boton-derecha">❯</button>
-                    
+
+                    <button class="carrusel-boton boton-izquierda" id="boton-izquierda" aria-label="Imagen anterior">❮</button>
+                    <button class="carrusel-boton boton-derecha" id="boton-derecha" aria-label="Imagen siguiente">❯</button>
+
                     <div class="carrusel-indicadores" id="indicadores">
-                        <div class="indicador activo"></div>
-                        <div class="indicador"></div>
-                        <div class="indicador"></div>
+                        <button class="indicador activo" aria-label="Ir a la imagen 1"></button>
+                        <button class="indicador" aria-label="Ir a la imagen 2"></button>
+                        <button class="indicador" aria-label="Ir a la imagen 3"></button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
- 
+
     <footer>
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/maria-jose-veloso/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/tu-perfil" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://instagram.com/tu-perfil" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="mailto:majitovelosojeda@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/maria-jose-veloso/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Majo512" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:majo.veloso12@gmail.com" aria-label="Enviar email"><i class="fas fa-envelope"></i></a>
         </div>
         <p>© 2026 Majo. Todos los derechos reservados.</p>
     </footer>
@@ -82,14 +92,14 @@
         const botonIzquierda = document.getElementById('boton-izquierda');
         const botonDerecha = document.getElementById('boton-derecha');
         const indicadores = document.querySelectorAll('.indicador');
-        
+
         let indiceActual = 0;
         const totalItems = document.querySelectorAll('.carrusel-item').length;
-        
+
         function actualizarCarrusel() {
             const desplazamiento = -indiceActual * 100;
             carruselContenedor.style.transform = `translateX(${desplazamiento}%)`;
-            
+
             indicadores.forEach((indicador, i) => {
                 if (i === indiceActual) {
                     indicador.classList.add('activo');
@@ -98,36 +108,57 @@
                 }
             });
         }
-        
+
         function siguienteImagen() {
             indiceActual = (indiceActual + 1) % totalItems;
             actualizarCarrusel();
         }
-        
+
         function imagenAnterior() {
             indiceActual = (indiceActual - 1 + totalItems) % totalItems;
             actualizarCarrusel();
         }
-        
+
         botonDerecha.addEventListener('click', siguienteImagen);
         botonIzquierda.addEventListener('click', imagenAnterior);
-        
+
         indicadores.forEach((indicador, i) => {
             indicador.addEventListener('click', () => {
                 indiceActual = i;
                 actualizarCarrusel();
             });
         });
-        
-        let intervalo = setInterval(siguienteImagen, 5000);
-        
+
+        // Autoplay respetando preferencias de movimiento reducido
+        const prefiereMenosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let intervalo = null;
+
+        function iniciarAutoplay() {
+            if (!prefiereMenosMovimiento && !intervalo) {
+                intervalo = setInterval(siguienteImagen, 5000);
+            }
+        }
+
+        function detenerAutoplay() {
+            if (intervalo) {
+                clearInterval(intervalo);
+                intervalo = null;
+            }
+        }
+
+        iniciarAutoplay();
+
         const carrusel = document.querySelector('.carrusel');
-        carrusel.addEventListener('mouseenter', () => {
-            clearInterval(intervalo);
-        });
-        
-        carrusel.addEventListener('mouseleave', () => {
-            intervalo = setInterval(siguienteImagen, 5000);
+        carrusel.addEventListener('mouseenter', detenerAutoplay);
+        carrusel.addEventListener('mouseleave', iniciarAutoplay);
+
+        // Pausar al cambiar de pestaña
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                detenerAutoplay();
+            } else {
+                iniciarAutoplay();
+            }
         });
     </script>
 </body>
